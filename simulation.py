@@ -22,4 +22,8 @@ t_intervals = 30
 dt = 1/365
 
 #Z matrix for our random normal distribution
-Z_mat = np.random.normal(0, 1)
+Z_mat = np.random.normal(0, 1, (t_intervals, iterations))
+
+#Simulated prices
+sim = np.zeros((31, 10000))
+sim[0, :] = s0
