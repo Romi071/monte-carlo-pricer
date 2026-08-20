@@ -27,3 +27,10 @@ Z_mat = np.random.normal(0, 1, (t_intervals, iterations))
 #Simulated prices
 sim = np.zeros((31, 10000))
 sim[0, :] = s0
+
+#GBM equation looped over 30 days
+
+for i in range(1, t_intervals + 1):
+    sim[i, :] = sim[i-1, :]*np.exp((mean - 0.5*std**2)*dt + std*dt**0.5*Z_mat[i-1, :])
+
+print(sim)
