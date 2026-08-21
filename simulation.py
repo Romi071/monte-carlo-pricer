@@ -1,5 +1,6 @@
 import csv
 import numpy as np
+import matplotlib.pyplot as plt
 
 prices = []
 
@@ -29,8 +30,17 @@ sim = np.zeros((31, 10000))
 sim[0, :] = s0
 
 #GBM equation looped over 30 days
-
 for i in range(1, t_intervals + 1):
     sim[i, :] = sim[i-1, :]*np.exp((mean - 0.5*std**2)*dt + std*dt**0.5*Z_mat[i-1, :])
 
-print(sim)
+
+#Sim complete, now plot it:
+
+plot_data = sim[:, 0:100]
+histogram_data = sim[-1, :]
+
+plt.plot(plot_data)
+plt.figure()
+plt.hist(histogram_data)
+
+plt.show()
